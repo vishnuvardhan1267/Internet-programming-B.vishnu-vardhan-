@@ -1,0 +1,40 @@
+3 JSP Request Flow
+
+Pseudocode
+ALGORITHM JSP_Request_Flow BEGIN
+Step 1: Client initiates request
+User enters JSP URL in the browser
+Browser sends HTTP request to the web server
+
+Step 2: Server receives request Web server receives the request Identify the requested JSP page
+
+Step 3: Check JSP status
+IF JSP page is requested for the first time OR JSP page has been modified THEN
+
+Translate JSP into Servlet source code Compile the Servlet
+
+END IF
+ 
+Step 4: Execute JSP Servlet
+Create request and response objects Execute the generated Servlet
+
+Step 5: Process backend request
+Read input parameters from the request
+
+IF backend processing is required THEN Call Servlet or JavaBean
+Connect to database if required Execute required database operation Retrieve required data
+END IF
+
+Step 6: Generate dynamic content Pass retrieved data to JSP
+JSP combines HTML with dynamic data Generate final HTML page
+
+Step 7: Create HTTP response
+Server places generated HTML into HTTP response
+
+Step 8: Send response
+Send HTTP response to the client browser
+
+Step 9: Display page Browser receives HTML Render the page
+Display dynamic content to the user
+
+END

@@ -1,0 +1,46 @@
+1 XML Parsing Algorithm
+
+Pseudocode:
+ALGORITHM XML_Parsing BEGIN
+INPUT XML file name
+
+Step 1: Load the XML document Open the XML file
+IF file cannot be opened THEN Display "Error: XML file not found" STOP
+END IF
+
+Step 2: Parse the XML document Create an XML Document Object Parse the XML file
+IF XML format is invalid THEN
+Display "Error: Invalid XML document" STOP
+END IF
+
+Step 3: Access the root element
+Get the root element of the XML document Display "Root Element: " + root element name
+
+Step 4: Traverse child nodes
+FOR each child node of the root element DO
+
+IF child node is an element THEN Get the node name
+
+Display node name
+
+Step 5: Access sub-elements
+FOR each sub-node of the current node DO
+
+IF sub-node is an element THEN Get sub-node name
+Get sub-node value
+ 
+Display:
+sub-node name sub-node value
+END IF
+
+END FOR END IF
+
+END FOR
+
+Step 6: Display extracted information
+Format the retrieved values in a readable manner Display all required user/product details
+Step 7: Close the XML document END
+
+
+
+

@@ -1,0 +1,41 @@
+4 Database Retrieval
+
+Pseudocode
+ALGORITHM Database_Retrieval BEGIN
+Step 1: Initialize database details Set database URL
+Set username Set password
+Set required SQL query
+
+Step 2: Load database driver
+Load the appropriate database driver
+
+Step 3: Establish connection Connect to the database
+
+IF connection fails THEN
+Display "Database connection failed" STOP
+END IF
+
+Step 4: Create statement
+Create a database statement object
+
+Step 5: Execute SQL query Execute SELECT query
+Store the returned records in ResultSet Step 6: Check records
+ 
+IF ResultSet contains no records THEN Display "No records found"
+ELSE
+
+Step 7: Process records
+WHILE another record exists DO
+
+Read required fields Store field values
+
+Display the retrieved values END WHILE
+END IF
+
+Step 8: Close resources Close ResultSet Close Statement
+Close database connection
+
+Step 9: End operation
+Display "Data retrieval completed"
+
+END

@@ -1,0 +1,41 @@
+2 MVC Workflow
+
+Pseudo code 
+ALGORITHM MVC_Workflow BEGIN
+Step 1: Receive user request
+User sends a request from the browser Send request to the web application
+
+Step 2: Controller receives request
+ 
+Controller identifies the requested operation Read request parameters
+
+Step 3: Validate request
+IF request data is invalid THEN Prepare an error response Send response to View
+ELSE
+Continue processing END IF
+
+Step 4: Call Model
+Controller sends required data to Model
+
+Step 5: Model processes request
+Model applies application/business logic Establish connection with database
+
+Step 6: Database interaction Execute required SQL operation Retrieve or update required data Close database connection
+
+Step 7: Return result
+Model sends processed data back to Controller
+
+Step 8: Select View
+Controller selects the appropriate View Pass processed data to the View
+
+Step 9: Generate response View uses the received data
+Generate dynamic HTML response
+
+Step 10: Send response
+Controller sends the generated response to the browser
+
+Step 11: Display result
+Browser displays the response to the user
+
+
+

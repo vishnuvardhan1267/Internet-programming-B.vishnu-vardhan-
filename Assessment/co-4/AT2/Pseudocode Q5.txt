@@ -1,0 +1,47 @@
+5.	PHP Validation
+
+Pseudocode
+ALGORITHM PHP_Form_Validation
+ 
+BEGIN
+
+Step 1: Receive form data Read name
+Read email Read password
+Read confirm password
+
+Step 2: Remove unnecessary spaces Trim name
+Trim email Trim password
+Trim confirm password Set error_count = 0
+Step 3: Validate name
+IF name is empty THEN Display "Name is required" error_count = error_count + 1
+END IF
+
+Step 4: Validate email
+IF email is empty THEN Display "Email is required"
+error_count = error_count + 1 ELSE IF email format is invalid THEN
+Display "Enter a valid email address" error_count = error_count + 1
+END IF
+
+Step 5: Validate password
+IF password is empty THEN Display "Password is required" error_count = error_count + 1
+ELSE IF password length is less than 8 THEN
+Display "Password must contain at least 8 characters" error_count = error_count + 1
+END IF
+
+Step 6: Validate confirm password
+IF confirm password is empty THEN Display "Confirm password is required" error_count = error_count + 1
+ 
+ELSE IF password is not equal to confirm password THEN Display "Passwords do not match"
+error_count = error_count + 1 END IF
+
+Step 7: Check validation result IF error_count = 0 THEN
+
+Display "Validation successful" Allow form submission
+
+Process the valid input
+Store data or continue to the next page ELSE
+Display "Please correct the errors" Prevent form submission
+
+END IF
+
+END
