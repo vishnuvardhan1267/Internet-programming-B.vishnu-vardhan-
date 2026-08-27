@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>StyleHub - Fashion Store</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#f8f4f5;color:#333}
+
+header{
+    background:#8e3b60;color:white;
+    text-align:center;padding:20px
+}
+
+nav{
+    background:#54243a;text-align:center;padding:12px
+}
+
+nav button,.btn{
+    padding:10px 15px;margin:4px;
+    border:0;border-radius:5px;cursor:pointer
+}
+
+nav button{background:white;color:#54243a}
+
+.container{width:90%;max-width:1100px;margin:20px auto}
+
+section{
+    background:white;padding:25px;
+    margin-bottom:20px;border-radius:10px;
+    box-shadow:0 2px 8px #ccc
+}
+
+.hidden{display:none}
+
+input,select,textarea{
+    width:100%;padding:10px;
+    margin:8px 0 15px;
+    border:1px solid #ccc;border-radius:5px
+}
+
+.btn{background:#8e3b60;color:white}
+
+.grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:18px
+}
+
+.product{
+    border:1px solid #ddd;
+    padding:18px;border-radius:8px;
+    text-align:center
+}
+
+.product .icon{
+    font-size:55px;
+    margin:10px
+}
+
+.price{
+    color:#d6336c;
+    font-size:20px;
+    font-weight:bold
+}
+
+table{
+    width:100%;
+    border-collapse:collapse
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;text-align:center
+}
+
+th{background:#8e3b60;color:white}
+
+footer{
+    background:#54243a;color:white;
+    text-align:center;padding:15px
+}
+
+@media(max-width:600px){
+    nav button{width:45%}
+    table{font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>👗 StyleHub</h1>
+<p>Fashion for Men, Women & Children</p>
+</header>
+
+<nav>
+<button onclick="show('home')">Home</button>
+<button onclick="show('register')">Register</button>
+<button onclick="show('login')">Login</button>
+<button onclick="show('products')">Products</button>
+<button onclick="show('cart')">Cart</button>
+<button onclick="show('wishlist')">Wishlist</button>
+<button onclick="show('orders')">My Orders</button>
+<button onclick="show('admin')">Admin</button>
+</nav>
+
+<div class="container">
+
+<!-- HOME -->
+
+<section id="home">
+
+<h2>Welcome to StyleHub</h2>
+
+<p>
+Discover the latest fashion trends in clothing,
+footwear and accessories for the whole family.
+</p>
+
+<h3>Popular Categories</h3>
+
+<div class="grid">
+
+<div class="product">
+<div class="icon">👔</div>
+<h3>Men</h3>
+<p>Shirts, Trousers & Formal Wear</p>
+</div>
+
+<div class="product">
+<div class="icon">👗</div>
+<h3>Women</h3>
+<p>Dresses, Tops & Ethnic Wear</p>
+</div>
+
+<div class="product">
+<div class="icon">👕</div>
+<h3>Children</h3>
+<p>Kids Fashion & Casual Wear</p>
+</div>
+
+<div class="product">
+<div class="icon">👟</div>
+<h3>Footwear</h3>
+<p>Shoes, Sandals & Sneakers</p>
+</div>
+
+<div class="product">
+<div class="icon">👜</div>
+<h3>Accessories</h3>
+<p>Bags, Watches & Jewellery</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REGISTER -->
+
+<section id="register" class="hidden">
+
+<h2>User Registration</h2>
+
+<input id="regName"
+placeholder="Full Name">
+
+<input id="regEmail"
+placeholder="Email">
+
+<input id="regUser"
+placeholder="Username">
+
+<input id="regPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="register()">
+
+Register
+
+</button>
+
+<p id="regMsg"></p>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section id="login" class="hidden">
+
+<h2>User Login</h2>
+
+<input id="loginUser"
+placeholder="Username">
+
+<input id="loginPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="login()">
+
+Login
+
+</button>
+
+<p id="loginMsg"></p>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products" class="hidden">
+
+<h2>Fashion Products</h2>
+
+<input id="search"
+placeholder="Search products..."
+onkeyup="displayProducts()">
+
+<select id="category"
+onchange="displayProducts()">
+
+<option value="All">All Categories</option>
+<option>Men</option>
+<option>Women</option>
+<option>Children</option>
+<option>Footwear</option>
+<option>Accessories</option>
+
+</select>
+
+<select id="subcategory"
+onchange="displayProducts()">
+
+<option value="All">All Subcategories</option>
+<option>Casual</option>
+<option>Formal</option>
+<option>Ethnic</option>
+<option>Sports</option>
+
+</select>
+
+<div id="productList" class="grid"></div>
+
+</section>
+
+
+<!-- CART -->
+
+<section id="cart" class="hidden">
+
+<h2>Shopping Cart</h2>
+
+<div id="cartList"></div>
+
+<h3 id="total"></h3>
+
+<button class="btn"
+onclick="checkout()">
+
+Checkout
+
+</button>
+
+</section>
+
+
+<!-- WISHLIST -->
+
+<section id="wishlist" class="hidden">
+
+<h2>My Wishlist</h2>
+
+<div id="wishList" class="grid"></div>
+
+</section>
+
+
+<!-- ORDERS -->
+
+<section id="orders" class="hidden">
+
+<h2>Order History & Status</h2>
+
+<div id="orderList"></div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section id="admin" class="hidden">
+
+<h2>Admin Login</h2>
+
+<input id="adminUser"
+placeholder="Username">
+
+<input id="adminPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="adminLogin()">
+
+Login
+
+</button>
+
+<div id="adminPanel" class="hidden">
+
+<h2>Manage Products</h2>
+
+<input id="newName"
+placeholder="Product Name">
+
+<select id="newCategory">
+
+<option>Men</option>
+<option>Women</option>
+<option>Children</option>
+<option>Footwear</option>
+<option>Accessories</option>
+
+</select>
+
+<input id="newSub"
+placeholder="Subcategory">
+
+<input id="newPrice"
+type="number"
+placeholder="Price">
+
+<input id="newDesc"
+placeholder="Description">
+
+<button class="btn"
+onclick="addProduct()">
+
+Add Product
+
+</button>
+
+<br><br>
+
+<div id="adminProducts"></div>
+
+<h3>Customer Details</h3>
+
+<div id="customers"></div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<footer>
+© 2026 StyleHub | Online Fashion Store
+</footer>
+
+
+<script>
+
+/* DATA */
+
+let users=[];
+
+let products=[
+
+{
+id:1,
+name:"Men Casual Shirt",
+category:"Men",
+sub:"Casual",
+price:1299,
+desc:"Comfortable cotton casual shirt"
+},
+
+{
+id:2,
+name:"Women Summer Dress",
+category:"Women",
+sub:"Casual",
+price:1899,
+desc:"Stylish summer dress"
+},
+
+{
+id:3,
+name:"Kids Party Wear",
+category:"Children",
+sub:"Formal",
+price:999,
+desc:"Elegant party wear for kids"
+},
+
+{
+id:4,
+name:"Running Sneakers",
+category:"Footwear",
+sub:"Sports",
+price:2499,
+desc:"Comfortable sports shoes"
+},
+
+{
+id:5,
+name:"Fashion Handbag",
+category:"Accessories",
+sub:"Casual",
+price:1599,
+desc:"Trendy women's handbag"
+}
+
+];
+
+let cart=[];
+let wishlist=[];
+let orders=[];
+let currentUser="";
+
+
+/* NAVIGATION */
+
+function show(id){
+
+document.querySelectorAll("section")
+.forEach(s=>s.classList.add("hidden"));
+
+document.getElementById(id)
+.classList.remove("hidden");
+
+if(id=="products")
+displayProducts();
+
+if(id=="cart")
+displayCart();
+
+if(id=="wishlist")
+displayWishlist();
+
+if(id=="orders")
+displayOrders();
+
+}
+
+
+/* REGISTER */
+
+function register(){
+
+let u={
+
+name:regName.value,
+email:regEmail.value,
+username:regUser.value,
+password:regPass.value
+
+};
+
+if(!u.name || !u.email ||
+!u.username || !u.password){
+
+regMsg.innerHTML=
+"Please fill all fields";
+
+return;
+}
+
+users.push(u);
+
+regMsg.innerHTML=
+"Registration successful!";
+
+}
+
+
+/* LOGIN */
+
+function login(){
+
+let u=users.find(x=>
+
+x.username==loginUser.value &&
+x.password==loginPass.value
+
+);
+
+if(u){
+
+currentUser=u.username;
+
+loginMsg.innerHTML=
+"Login successful!";
+
+}else{
+
+loginMsg.innerHTML=
+"Invalid username or password";
+
+}
+
+}
+
+
+/* DISPLAY PRODUCTS */
+
+function displayProducts(){
+
+let text=
+search.value.toLowerCase();
+
+let cat=category.value;
+
+let sub=subcategory.value;
+
+let result=products.filter(p=>
+
+p.name.toLowerCase().includes(text) &&
+
+(cat=="All" || p.category==cat) &&
+
+(sub=="All" || p.sub==sub)
+
+);
+
+productList.innerHTML="";
+
+result.forEach(p=>{
+
+productList.innerHTML+=`
+
+<div class="product">
+
+<div class="icon">🛍️</div>
+
+<h3>${p.name}</h3>
+
+<p>${p.category} - ${p.sub}</p>
+
+<p>${p.desc}</p>
+
+<p class="price">₹${p.price}</p>
+
+<p>Available</p>
+
+<button class="btn"
+onclick="addCart(${p.id})">
+
+Add to Cart
+
+</button>
+
+<button class="btn"
+onclick="addWish(${p.id})">
+
+♡ Wishlist
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* CART */
+
+function addCart(id){
+
+let p=
+products.find(x=>x.id==id);
+
+cart.push(p);
+
+alert(p.name+" added to cart");
+
+}
+
+
+function displayCart(){
+
+if(cart.length==0){
+
+cartList.innerHTML=
+"<p>Cart is empty.</p>";
+
+total.innerHTML="";
+
+return;
+
+}
+
+let sum=0;
+
+let html=`
+<table>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Action</th>
+</tr>`;
+
+cart.forEach((p,i)=>{
+
+sum+=p.price;
+
+html+=`
+
+<tr>
+
+<td>${p.name}</td>
+
+<td>₹${p.price}</td>
+
+<td>
+<button class="btn"
+onclick="removeCart(${i})">
+Remove
+</button>
+</td>
+
+</tr>`;
+
+});
+
+html+="</table>";
+
+cartList.innerHTML=html;
+
+total.innerHTML=
+"Total Amount: ₹"+sum;
+
+}
+
+
+function removeCart(i){
+
+cart.splice(i,1);
+
+displayCart();
+
+}
+
+
+/* WISHLIST */
+
+function addWish(id){
+
+let p=
+products.find(x=>x.id==id);
+
+wishlist.push(p);
+
+alert(
+p.name+" added to wishlist"
+);
+
+}
+
+
+function displayWishlist(){
+
+wishList.innerHTML="";
+
+if(wishlist.length==0){
+
+wishList.innerHTML=
+"<p>Wishlist is empty.</p>";
+
+return;
+
+}
+
+wishlist.forEach(p=>{
+
+wishList.innerHTML+=`
+
+<div class="product">
+
+<h3>${p.name}</h3>
+
+<p>₹${p.price}</p>
+
+<button class="btn"
+onclick="addCart(${p.id})">
+
+Add to Cart
+
+</button>
+
+</div>`;
+
+});
+
+}
+
+
+/* CHECKOUT */
+
+function checkout(){
+
+if(!currentUser){
+
+alert("Please login first");
+
+show("login");
+
+return;
+
+}
+
+if(cart.length==0){
+
+alert("Cart is empty");
+
+return;
+
+}
+
+let amount=
+cart.reduce(
+(sum,p)=>sum+p.price,0
+);
+
+let order={
+
+id:"ORD"+
+Math.floor(10000+
+Math.random()*90000),
+
+user:currentUser,
+
+items:cart.map(p=>p.name),
+
+amount:amount,
+
+status:"Order Placed"
+
+};
+
+orders.push(order);
+
+cart=[];
+
+alert("Order placed successfully!");
+
+show("orders");
+
+}
+
+
+/* ORDERS */
+
+function displayOrders(){
+
+let data=
+orders.filter(
+o=>o.user==currentUser
+);
+
+if(data.length==0){
+
+orderList.innerHTML=
+"<p>No orders found.</p>";
+
+return;
+
+}
+
+let html=`
+<table>
+<tr>
+<th>Order ID</th>
+<th>Items</th>
+<th>Amount</th>
+<th>Status</th>
+</tr>`;
+
+data.forEach(o=>{
+
+html+=`
+
+<tr>
+
+<td>${o.id}</td>
+
+<td>${o.items.join(", ")}</td>
+
+<td>₹${o.amount}</td>
+
+<td>${o.status}</td>
+
+</tr>`;
+
+});
+
+html+="</table>";
+
+orderList.innerHTML=html;
+
+}
+
+
+/* ADMIN LOGIN */
+
+function adminLogin(){
+
+if(adminUser.value=="admin" &&
+adminPass.value=="admin123"){
+
+adminPanel.classList.remove("hidden");
+
+displayAdmin();
+
+}else{
+
+alert("Invalid admin login");
+
+}
+
+}
+
+
+/* ADD PRODUCT */
+
+function addProduct(){
+
+let p={
+
+id:products.length+1,
+
+name:newName.value,
+
+category:newCategory.value,
+
+sub:newSub.value,
+
+price:Number(newPrice.value),
+
+desc:newDesc.value
+
+};
+
+if(!p.name || !p.price){
+
+alert("Enter product details");
+
+return;
+
+}
+
+products.push(p);
+
+alert("Product added successfully");
+
+displayAdmin();
+
+displayProducts();
+
+}
+
+
+/* ADMIN MANAGEMENT */
+
+function displayAdmin(){
+
+let html=`
+<table>
+<tr>
+<th>Product</th>
+<th>Category</th>
+<th>Price</th>
+<th>Description</th>
+<th>Action</th>
+</tr>`;
+
+products.forEach((p,i)=>{
+
+html+=`
+
+<tr>
+
+<td>${p.name}</td>
+
+<td>${p.category}</td>
+
+<td>₹${p.price}</td>
+
+<td>${p.desc}</td>
+
+<td>
+
+<button class="btn"
+onclick="deleteProduct(${i})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>`;
+
+});
+
+html+="</table>";
+
+adminProducts.innerHTML=html;
+
+customers.innerHTML=users.map(u=>
+`
+<p>
+<b>${u.name}</b> -
+${u.email}
+</p>
+`
+).join("");
+
+}
+
+
+/* DELETE PRODUCT */
+
+function deleteProduct(i){
+
+products.splice(i,1);
+
+displayAdmin();
+
+displayProducts();
+
+}
+
+</script>
+
+</body>
+</html>

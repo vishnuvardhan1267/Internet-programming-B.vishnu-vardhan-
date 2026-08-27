@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+</head>
+<body>
+<h2>Library Management System</h2>
+<h3>Login / Register</h3>
+<input id="user" placeholder="Username">
+<button onclick="login()">Login</button>
+<button onclick="register()">Register</button>
+<h3>Book Management</h3>
+<input id="book" placeholder="Book Name">
+<button onclick="addBook()">Add Book</button>
+<button onclick="searchBook()">Search Book</button>
+<button onclick="updateBook()">Update Book</button>
+<button onclick="deleteBook()">Delete Book</button>
+<h3>Book Issue / Return</h3>
+<button onclick="issueBook()">Issue Book</button>
+<button onclick="returnBook()">Return Book</button>
+<button onclick="checkFine()">Check Fine</button>
+<h3>Study Material</h3>
+<input id="year" placeholder="Year">
+<input id="semester" placeholder="Semester">
+<button onclick="searchMaterial()">Search Material</button>
+<button onclick="viewMaterial()">View Material</button>
+<button onclick="downloadMaterial()">Download Material</button>
+<h3>My Profile</h3>
+<button onclick="profile()">My Profile</button>
+<p id="result"></p>
+<script>
+let books = [];
+let borrowed = false;
+let username = "";
+function login() {
+    username = document.getElementById("user").value;
+    result.innerHTML = username + " logged in successfully";
+}
+function register() {
+    result.innerHTML = "User registered successfully";
+}
+function addBook() {
+    let b = document.getElementById("book").value;
+    books.push(b);
+    result.innerHTML = "Book added: " + b;
+}
+function searchBook() {
+    let b = document.getElementById("book").value;
+    result.innerHTML = books.includes(b) ? "Book found" : "Book not found";
+}
+function updateBook() {
+    result.innerHTML = "Book updated successfully";
+}
+function deleteBook() {
+    let b = document.getElementById("book").value;
+    books = books.filter(x => x != b);
+    result.innerHTML = "Book deleted successfully";
+}
+function issueBook() {
+    borrowed = true;
+    result.innerHTML = "Book issued. Issue Date: " + new Date().toDateString();
+}
+function returnBook() {
+    borrowed = false;
+    result.innerHTML = "Book returned successfully";
+}
+function checkFine() {
+    result.innerHTML = "Fine: ₹0";
+}
+function searchMaterial() {
+    result.innerHTML = "Material searched for selected year and semester";
+}
+function viewMaterial() {
+    result.innerHTML = "Study material displayed";
+}
+function downloadMaterial() {
+    result.innerHTML = "Material download started";
+}
+
+function profile() {
+    result.innerHTML = "User Profile: " + username;
+}
+</script>
+</body>
+</html>

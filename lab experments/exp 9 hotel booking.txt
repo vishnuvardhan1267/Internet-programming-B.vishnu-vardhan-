@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Hotel Booking</title>
+<style>
+body{font-family:Arial;background:#f2f2f2;margin:0}
+header{background:#0077b6;color:#fff;text-align:center;padding:15px}
+section{background:#fff;width:80%;margin:20px auto;padding:20px;border-radius:8px}
+input,select,button{width:100%;padding:10px;margin:8px 0}
+button{background:#0077b6;color:#fff;border:none;cursor:pointer}
+button:hover{background:#023e8a}
+footer{background:#333;color:#fff;text-align:center;padding:10px}
+</style>
+</head>
+<body>
+<header>
+<h1>Online Hotel Booking</h1>
+<p>Book Your Room Easily</p>
+</header>
+<section>
+<h2>Search Room</h2>
+<form>
+<input type="text" placeholder="Destination" required>
+<input type="date" required>
+<input type="date" required>
+<input type="number" placeholder="Guests" min="1" required>
+<select>
+<option>Standard Room</option>
+<option>Deluxe Room</option>
+<option>Suite</option>
+<option>Family Room</option>
+</select>
+<button>Check Availability</button>
+</form>
+</section>
+<section>
+<h2>Available Room</h2>
+<p><b>Deluxe Room</b></p>
+<p>Price: $120 / Night</p>
+<p>Facilities: WiFi, AC, TV, Breakfast</p>
+<button>Book Now</button>
+</section>
+<section>
+<h2>Customer Review</h2>
+<p>⭐⭐⭐⭐⭐ Excellent Service!</p>
+</section>
+<section>
+<h2>Contact</h2>
+<p>Email: hotel@example.com</p>
+<p>Phone: +91 9876543210</p>
+</section>
+<footer>
+<p>&copy; 2026 Online Hotel Booking</p>
+</footer>
+</body>
+</html>

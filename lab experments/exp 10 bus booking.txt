@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Online Bus Ticket Booking System</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    scroll-behavior:smooth;
+}
+body{
+    background:linear-gradient(120deg,#d9f1ff,#ffffff);
+    animation:bgmove 8s infinite alternate;
+}
+@keyframes bgmove{
+    from{
+        background-position:left;
+    }
+    to{
+        background-position:right;
+    }
+}
+/* Header */
+header{
+    background:linear-gradient(45deg,#0066ff,#00ccff);
+    color:white;
+    padding:30px;
+    text-align:center;
+    animation:slideDown 1.5s;
+}
+header h1{
+    font-size:40px;
+    animation:zoom 2s infinite alternate;
+}
+@keyframes slideDown{
+    from{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+@keyframes zoom{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.05);
+    }
+}
+/* Navigation */
+
+nav{
+    background:#222;
+    padding:15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:20px;
+    font-size:18px;
+    transition:.5s;
+}
+nav a:hover{
+    color:#00ccff;
+    letter-spacing:2px;
+}
+/* Main Container */
+
+.container{
+    width:85%;
+    margin:auto;
+}
+/* Cards */
+.box{
+    background:white;
+    margin:30px 0;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    animation:fadeUp 1s;
+    transition:.5s;
+}
+.box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,102,255,.3);
+}
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+h2{
+    color:#0066cc;
+    margin-bottom:15px;
+}
+/* Inputs */
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #aaa;
+    transition:.4s;
+}
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#0066ff;
+    box-shadow:0 0 10px #00ccff;
+}
+/* Buttons */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(45deg,#0066ff,#00ccff);
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:.5s;
+}
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #00ccff;
+}
+/* Animated Bus */
+.bus{
+    font-size:50px;
+    animation:moveBus 6s linear infinite;
+}
+@keyframes moveBus{
+    0%{
+        transform:translateX(-100px);
+    }
+    50%{
+        transform:translateX(100px);
+    }
+    100%{
+        transform:translateX(-100px);
+    }
+}
+/* Footer */
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+/* Mobile */
+@media(max-width:700px){
+    header h1{
+        font-size:25px;
+    }
+    nav a{
+        display:block;
+        margin:10px;
+    }
+    .container{
+        width:95%;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="bus">🚌</div>
+<h1>Online Bus Ticket Booking System</h1>
+<p>Fast | Secure | Easy Booking</p>
+</header>
+<nav>
+<a href="#login">Login</a>
+<a href="#register">Register</a>
+<a href="#booking">Book Ticket</a>
+<a href="#cancel">Cancel</a>
+<a href="#comment">Comments</a>
+<a href="#admin">Admin</a>
+</nav>
+<div class="container">
+<div class="box">
+<h2>Search Bus</h2>
+<input type="text" placeholder="From Location">
+<input type="text" placeholder="To Location">
+<input type="date">
+<input type="time">
+<button>Search Bus</button>
+</div>
+<div class="box" id="login">
+<h2>User Login</h2>
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+<button>Login</button>
+</div>
+<div class="box" id="register">
+<h2>User Registration</h2>
+<input placeholder="Full Name">
+<input placeholder="Email">
+<input placeholder="Mobile Number">
+<input type="password" placeholder="Password">
+<button>Create Account</button>
+</div>
+<div class="box" id="booking">
+<h2>Book Ticket</h2>
+<select>
+<option>Volvo Bus</option>
+<option>Sleeper Coach</option>
+<option>AC Coach</option>
+</select>
+<input placeholder="Passenger Name">
+<input placeholder="Seat Number">
+<input placeholder="Payment Details">
+<button>Confirm Booking</button>
+</div>
+<div class="box" id="cancel">
+<h2>Cancel Ticket</h2>
+<input placeholder="Booking ID">
+<button>Cancel Booking</button>
+</div>
+<div class="box" id="comment">
+<h2>Comments</h2>
+<textarea placeholder="Write your feedback"></textarea>
+<button>Submit</button>
+</div>
+<div class="box" id="admin">
+<h2>Admin Panel</h2>
+<ul>
+<li>Manage Bus Information</li>
+<li>Manage Bus Category</li>
+<li>Manage Users</li>
+<li>Update Bus Details</li>
+<li>Generate Reports</li>
+</ul>
+<br>
+<button>Generate Report</button>
+</div>
+</div>
+<footer>
+© 2026 Online Bus Ticket Booking System
+</footer>
+</body>
+</html>
