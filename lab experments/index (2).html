@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Room Booking System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+header{
+    background:#003366;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+nav{
+    background:#0055aa;
+    padding:10px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-weight:bold;
+}
+
+.hero{
+    text-align:center;
+    padding:40px;
+    background:#e6f2ff;
+}
+
+.hero h1{
+    color:#003366;
+}
+
+.search-box{
+    width:90%;
+    max-width:900px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+.search-box input,
+.search-box select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    background:#003366;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0055aa;
+}
+
+.rooms{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:30px;
+}
+
+.room{
+    background:white;
+    width:250px;
+    margin:15px;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 0 10px gray;
+}
+
+.room img{
+    width:100%;
+    border-radius:10px;
+}
+
+.booking{
+    width:90%;
+    max-width:700px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+.booking input,
+.booking select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+section{
+    padding:40px;
+}
+
+footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>Online Hotel Room Booking System</h1>
+<p>Book Your Dream Stay</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Rooms</a>
+<a href="#">Booking</a>
+<a href="#">Booking History</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+<a href="#">Login</a>
+</nav>
+
+<div class="hero">
+<h1>Find Your Perfect Room</h1>
+<p>Search hotels based on destination, date and guests.</p>
+</div>
+
+<div class="search-box">
+<h2>Search Rooms</h2>
+
+<input type="text" placeholder="Destination">
+
+<label>Check-In</label>
+<input type="date">
+
+<label>Check-Out</label>
+<input type="date">
+
+<select>
+<option>Guests</option>
+<option>1 Guest</option>
+<option>2 Guests</option>
+<option>3 Guests</option>
+<option>4 Guests</option>
+</select>
+
+<button>Check Availability</button>
+
+</div>
+
+<section>
+
+<h2 align="center">Room Types</h2>
+
+<div class="rooms">
+
+<div class="room">
+<img src="https://via.placeholder.com/250x150" alt="">
+<h3>Single Room</h3>
+<p>$50 / Night</p>
+<button>Book Now</button>
+</div>
+
+<div class="room">
+<img src="https://via.placeholder.com/250x150" alt="">
+<h3>Double Room</h3>
+<p>$80 / Night</p>
+<button>Book Now</button>
+</div>
+
+<div class="room">
+<img src="https://via.placeholder.com/250x150" alt="">
+<h3>Deluxe Room</h3>
+<p>$120 / Night</p>
+<button>Book Now</button>
+</div>
+
+<div class="room">
+<img src="https://via.placeholder.com/250x150" alt="">
+<h3>Suite Room</h3>
+<p>$180 / Night</p>
+<button>Book Now</button>
+</div>
+
+</div>
+
+</section>
+
+<div class="booking">
+
+<h2>Booking Form</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="email" placeholder="Email">
+
+<input type="text" placeholder="Phone Number">
+
+<select>
+<option>Select Room Type</option>
+<option>Single Room</option>
+<option>Double Room</option>
+<option>Deluxe Room</option>
+<option>Suite Room</option>
+</select>
+
+<label>Arrival Date</label>
+<input type="date">
+
+<label>Departure Date</label>
+<input type="date">
+
+<input type="number" placeholder="Number of Guests">
+
+<button>Proceed to Payment</button>
+
+</div>
+
+<section>
+
+<h2>Booking History</h2>
+
+<p>Users can view all previous hotel bookings here.</p>
+
+<button>View Booking History</button>
+
+</section>
+
+<section>
+
+<h2>About Us</h2>
+
+<p>
+Our hotel booking website helps customers search hotels, check room availability,
+book rooms securely, and manage bookings with ease.
+</p>
+
+</section>
+
+<section>
+
+<h2>Customer Service Q&A</h2>
+
+<p><b>Q:</b> Can I cancel my booking?</p>
+<p><b>A:</b> Yes, up to 3 days before arrival.</p>
+
+<p><b>Q:</b> Can I modify my booking?</p>
+<p><b>A:</b> Yes, before 3 days of check-in.</p>
+
+</section>
+
+<section>
+
+<h2>Contact Us</h2>
+
+<p>Email : support@hotelbooking.com</p>
+<p>Phone : +1 9876543210</p>
+<p>Address : New York, USA</p>
+
+</section>
+
+<section>
+
+<h2>Privacy Policy</h2>
+
+<p>
+We securely store customer information and process payments through
+a secure payment gateway. Personal data is never shared without permission.
+</p>
+
+</section>
+
+<footer>
+
+<p>© 2026 Online Hotel Booking System | All Rights Reserved</p>
+
+</footer>
+
+</body>
+</html>
