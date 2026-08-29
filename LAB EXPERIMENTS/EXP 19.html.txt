@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>InsureEasy - Insurance Management System</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#f3f7fb;color:#333}
+
+header{
+    background:#1769aa;color:white;
+    text-align:center;padding:22px
+}
+
+nav{
+    background:#0d3b66;
+    text-align:center;padding:12px
+}
+
+nav button,.btn{
+    padding:10px 15px;margin:4px;
+    border:0;border-radius:5px;cursor:pointer
+}
+
+nav button{background:white;color:#0d3b66}
+
+.container{
+    width:90%;max-width:1100px;
+    margin:20px auto
+}
+
+section{
+    background:white;padding:25px;
+    margin-bottom:20px;border-radius:10px;
+    box-shadow:0 2px 8px #ccc
+}
+
+.hidden{display:none}
+
+input,select,textarea{
+    width:100%;padding:10px;
+    margin:8px 0 15px;
+    border:1px solid #ccc;
+    border-radius:5px
+}
+
+.btn{background:#1769aa;color:white}
+
+.grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:18px
+}
+
+.card{
+    border:1px solid #ddd;
+    padding:18px;
+    border-radius:8px
+}
+
+.price{
+    color:#16803c;
+    font-size:19px;
+    font-weight:bold
+}
+
+table{
+    width:100%;
+    border-collapse:collapse
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center
+}
+
+th{
+    background:#1769aa;
+    color:white
+}
+
+footer{
+    background:#0d3b66;
+    color:white;
+    text-align:center;
+    padding:15px
+}
+
+@media(max-width:600px){
+    nav button{width:45%}
+    table{font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🛡️ InsureEasy</h1>
+<p>Simple and Secure Insurance Management</p>
+</header>
+
+<nav>
+<button onclick="show('home')">Home</button>
+<button onclick="show('register')">Register</button>
+<button onclick="show('login')">Login</button>
+<button onclick="show('policies')">Policies</button>
+<button onclick="show('compare')">Compare</button>
+<button onclick="show('dashboard')">My Policies</button>
+<button onclick="show('claim')">File Claim</button>
+<button onclick="show('agent')">Agent</button>
+<button onclick="show('admin')">Admin</button>
+</nav>
+
+<div class="container">
+
+<!-- HOME -->
+
+<section id="home">
+
+<h2>Welcome to InsureEasy</h2>
+
+<p>
+InsureEasy helps customers compare insurance policies,
+manage policies, make premium payments and submit claims
+through a simple online platform.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>🏥 Health Insurance</h3>
+<p>Protect yourself and your family.</p>
+<button class="btn"
+onclick="show('policies')">
+View Policies
+</button>
+</div>
+
+<div class="card">
+<h3>🚗 Auto Insurance</h3>
+<p>Secure your vehicle with suitable coverage.</p>
+<button class="btn"
+onclick="show('policies')">
+View Policies
+</button>
+</div>
+
+<div class="card">
+<h3>🏠 Home Insurance</h3>
+<p>Protect your home and valuable assets.</p>
+<button class="btn"
+onclick="show('policies')">
+View Policies
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REGISTER -->
+
+<section id="register" class="hidden">
+
+<h2>Customer Registration</h2>
+
+<input id="regName"
+placeholder="Full Name">
+
+<input id="regEmail"
+placeholder="Email">
+
+<input id="regUser"
+placeholder="Username">
+
+<input id="regPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="register()">
+Register
+</button>
+
+<p id="regMsg"></p>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section id="login" class="hidden">
+
+<h2>User Login</h2>
+
+<input id="loginUser"
+placeholder="Username">
+
+<input id="loginPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="login()">
+Login
+</button>
+
+<p id="loginMsg"></p>
+
+</section>
+
+
+<!-- POLICIES -->
+
+<section id="policies" class="hidden">
+
+<h2>Available Insurance Policies</h2>
+
+<div id="policyList"
+class="grid">
+
+</div>
+
+</section>
+
+
+<!-- COMPARE -->
+
+<section id="compare" class="hidden">
+
+<h2>Compare Insurance Policies</h2>
+
+<select id="policy1">
+<option value="0">Health Secure</option>
+<option value="1">Auto Protect</option>
+<option value="2">Home Shield</option>
+</select>
+
+<select id="policy2">
+<option value="1">Auto Protect</option>
+<option value="0">Health Secure</option>
+<option value="2">Home Shield</option>
+</select>
+
+<button class="btn"
+onclick="comparePolicies()">
+Compare
+</button>
+
+<div id="compareResult"></div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="hidden">
+
+<h2>My Insurance Policies</h2>
+
+<div id="myPolicies"></div>
+
+<h3>Premium Payment</h3>
+
+<input id="paymentPolicy"
+placeholder="Enter Policy Number">
+
+<button class="btn"
+onclick="payPremium()">
+Pay Premium
+</button>
+
+<p id="paymentMsg"></p>
+
+</section>
+
+
+<!-- CLAIM -->
+
+<section id="claim" class="hidden">
+
+<h2>File Insurance Claim</h2>
+
+<input id="claimPolicy"
+placeholder="Policy Number">
+
+<select id="claimType">
+<option>Health Claim</option>
+<option>Vehicle Accident</option>
+<option>Home Damage</option>
+</select>
+
+<textarea id="claimReason"
+placeholder="Describe the claim"></textarea>
+
+<button class="btn"
+onclick="fileClaim()">
+Submit Claim
+</button>
+
+<p id="claimMsg"></p>
+
+</section>
+
+
+<!-- AGENT -->
+
+<section id="agent" class="hidden">
+
+<h2>Agent Registration</h2>
+
+<input id="agentName"
+placeholder="Agent Name">
+
+<input id="agentEmail"
+placeholder="Agent Email">
+
+<input id="agentUser"
+placeholder="Username">
+
+<input id="agentPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="registerAgent()">
+Register Agent
+</button>
+
+<p id="agentMsg"></p>
+
+<hr>
+
+<h2>Agent Customer Management</h2>
+
+<input id="customerName"
+placeholder="Customer Name">
+
+<input id="customerEmail"
+placeholder="Customer Email">
+
+<button class="btn"
+onclick="createCustomer()">
+Create Customer
+</button>
+
+<p id="customerMsg"></p>
+
+<h3>Send SMS Alert</h3>
+
+<input id="alertPolicy"
+placeholder="Policy Number">
+
+<button class="btn"
+onclick="sendSMS()">
+Send Reminder
+</button>
+
+<p id="smsMsg"></p>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section id="admin" class="hidden">
+
+<h2>Admin Login</h2>
+
+<input id="adminUser"
+placeholder="Username">
+
+<input id="adminPass"
+type="password"
+placeholder="Password">
+
+<button class="btn"
+onclick="adminLogin()">
+Login
+</button>
+
+<div id="adminPanel" class="hidden">
+
+<h2>Agent Management</h2>
+
+<div id="agentList"></div>
+
+<h2>Customer Details</h2>
+
+<div id="customerList"></div>
+
+</div>
+
+</section>
+
+</div>
+
+<footer>
+© 2026 InsureEasy | Online Insurance Management System
+</footer>
+
+
+<script>
+
+/* USER DATA */
+
+let users=[];
+let agents=[];
+let customers=[];
+let currentUser="";
+
+let policies=[
+
+{
+id:"POL001",
+name:"Health Secure",
+type:"Health",
+premium:12000,
+coverage:500000,
+duration:"1 Year",
+status:"Active"
+},
+
+{
+id:"POL002",
+name:"Auto Protect",
+type:"Auto",
+premium:9000,
+coverage:300000,
+duration:"1 Year",
+status:"Active"
+},
+
+{
+id:"POL003",
+name:"Home Shield",
+type:"Home",
+premium:15000,
+coverage:1000000,
+duration:"1 Year",
+status:"Active"
+}
+
+];
+
+let userPolicies=[];
+
+
+/* NAVIGATION */
+
+function show(id){
+
+document.querySelectorAll("section")
+.forEach(s=>s.classList.add("hidden"));
+
+document.getElementById(id)
+.classList.remove("hidden");
+
+if(id=="policies")
+displayPolicies();
+
+if(id=="dashboard")
+displayMyPolicies();
+
+}
+
+
+/* REGISTER */
+
+function register(){
+
+let u={
+
+name:regName.value,
+email:regEmail.value,
+username:regUser.value,
+password:regPass.value
+
+};
+
+if(!u.name ||
+!u.email ||
+!u.username ||
+!u.password){
+
+regMsg.innerHTML=
+"Please fill all fields";
+
+return;
+
+}
+
+users.push(u);
+
+regMsg.innerHTML=
+"Registration successful!";
+
+}
+
+
+/* LOGIN */
+
+function login(){
+
+let u=users.find(x=>
+
+x.username==loginUser.value &&
+x.password==loginPass.value
+
+);
+
+if(u){
+
+currentUser=u.username;
+
+loginMsg.innerHTML=
+"Login successful!";
+
+}else{
+
+loginMsg.innerHTML=
+"Invalid username or password";
+
+}
+
+}
+
+
+/* DISPLAY POLICIES */
+
+function displayPolicies(){
+
+let html="";
+
+policies.forEach((p,i)=>{
+
+html+=`
+
+<div class="card">
+
+<h2>${p.name}</h2>
+
+<p>Type: ${p.type}</p>
+
+<p>Coverage:
+₹${p.coverage.toLocaleString()}
+</p>
+
+<p class="price">
+Premium: ₹${p.premium}/year
+</p>
+
+<p>Duration: ${p.duration}</p>
+
+<button class="btn"
+onclick="buyPolicy(${i})">
+
+Purchase Policy
+
+</button>
+
+</div>
+
+`;
+
+});
+
+policyList.innerHTML=html;
+
+}
+
+
+/* BUY POLICY */
+
+function buyPolicy(i){
+
+if(!currentUser){
+
+alert("Please login first");
+
+show("login");
+
+return;
+
+}
+
+let p=policies[i];
+
+userPolicies.push({
+
+user:currentUser,
+policy:p,
+status:"Active"
+
+});
+
+alert(
+p.name+" purchased successfully!"
+);
+
+show("dashboard");
+
+}
+
+
+/* COMPARE */
+
+function comparePolicies(){
+
+let p1=
+policies[policy1.value];
+
+let p2=
+policies[policy2.value];
+
+compareResult.innerHTML=`
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>${p1.name}</th>
+<th>${p2.name}</th>
+</tr>
+
+<tr>
+<td>Type</td>
+<td>${p1.type}</td>
+<td>${p2.type}</td>
+</tr>
+
+<tr>
+<td>Premium</td>
+<td>₹${p1.premium}</td>
+<td>₹${p2.premium}</td>
+</tr>
+
+<tr>
+<td>Coverage</td>
+<td>₹${p1.coverage}</td>
+<td>₹${p2.coverage}</td>
+</tr>
+
+<tr>
+<td>Duration</td>
+<td>${p1.duration}</td>
+<td>${p2.duration}</td>
+</tr>
+
+</table>
+
+`;
+
+}
+
+
+/* MY POLICIES */
+
+function displayMyPolicies(){
+
+let data=
+userPolicies.filter(
+p=>p.user==currentUser
+);
+
+if(data.length==0){
+
+myPolicies.innerHTML=
+"<p>No active policies.</p>";
+
+return;
+
+}
+
+let html=`
+
+<table>
+
+<tr>
+<th>Policy No.</th>
+<th>Policy</th>
+<th>Premium</th>
+<th>Coverage</th>
+<th>Status</th>
+</tr>
+`;
+
+data.forEach((x,i)=>{
+
+html+=`
+
+<tr>
+
+<td>${x.policy.id}</td>
+
+<td>${x.policy.name}</td>
+
+<td>₹${x.policy.premium}</td>
+
+<td>₹${x.policy.coverage}</td>
+
+<td>${x.status}</td>
+
+</tr>
+
+`;
+
+});
+
+html+="</table>";
+
+myPolicies.innerHTML=html;
+
+}
+
+
+/* PREMIUM PAYMENT */
+
+function payPremium(){
+
+if(!paymentPolicy.value){
+
+paymentMsg.innerHTML=
+"Enter policy number";
+
+return;
+
+}
+
+paymentMsg.innerHTML=
+"Premium payment successful for "+
+paymentPolicy.value;
+
+}
+
+
+/* CLAIM */
+
+function fileClaim(){
+
+if(!claimPolicy.value ||
+!claimReason.value){
+
+claimMsg.innerHTML=
+"Please enter all claim details";
+
+return;
+
+}
+
+claimMsg.innerHTML=
+"Claim submitted successfully. Claim ID: CLM"+
+Math.floor(1000+Math.random()*9000);
+
+}
+
+
+/* AGENT REGISTER */
+
+function registerAgent(){
+
+let a={
+
+name:agentName.value,
+email:agentEmail.value,
+username:agentUser.value,
+password:agentPass.value,
+status:"Pending Approval"
+
+};
+
+agents.push(a);
+
+agentMsg.innerHTML=
+"Agent registration submitted for admin approval.";
+
+}
+
+
+/* CREATE CUSTOMER */
+
+function createCustomer(){
+
+let c={
+
+name:customerName.value,
+email:customerEmail.value
+
+};
+
+customers.push(c);
+
+customerMsg.innerHTML=
+"Customer created successfully.";
+
+}
+
+
+/* SMS ALERT */
+
+function sendSMS(){
+
+if(!alertPolicy.value){
+
+smsMsg.innerHTML=
+"Enter policy number";
+
+return;
+
+}
+
+smsMsg.innerHTML=
+"SMS reminder sent to policyholder for "+
+alertPolicy.value;
+
+}
+
+
+/* ADMIN LOGIN */
+
+function adminLogin(){
+
+if(
+adminUser.value=="admin" &&
+adminPass.value=="admin123"
+){
+
+adminPanel.classList.remove(
+"hidden"
+);
+
+displayAdmin();
+
+}else{
+
+alert("Invalid admin login");
+
+}
+
+}
+
+
+/* ADMIN DATA */
+
+function displayAdmin(){
+
+let html=`
+
+<table>
+
+<tr>
+<th>Agent</th>
+<th>Email</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+`;
+
+agents.forEach((a,i)=>{
+
+html+=`
+
+<tr>
+
+<td>${a.name}</td>
+
+<td>${a.email}</td>
+
+<td>${a.status}</td>
+
+<td>
+
+<button class="btn"
+onclick="approveAgent(${i})">
+
+Approve
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+html+="</table>";
+
+agentList.innerHTML=html;
+
+
+/* CUSTOMER DETAILS */
+
+customerList.innerHTML=
+customers.map(c=>`
+
+<p>
+<b>${c.name}</b> -
+${c.email}
+</p>
+
+`).join("");
+
+}
+
+
+/* APPROVE AGENT */
+
+function approveAgent(i){
+
+agents[i].status="Approved";
+
+displayAdmin();
+
+alert("Agent approved successfully");
+
+}
+
+</script>
+
+</body>
+</html>
